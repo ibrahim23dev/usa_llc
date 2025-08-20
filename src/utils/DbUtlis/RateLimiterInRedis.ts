@@ -2,8 +2,8 @@
 import { NextFunction, Request, Response } from "express";
 
 import { RateLimiterRedis } from "rate-limiter-flexible";
-import { redisClient } from "../../app/redis/redis";
-import { errorLogger } from "../../app/share/logger";
+import { redisClient } from "../../app/redies/redis";
+import { errorLogger } from "../../app/adapters/logger";
 
 const rateLimiter = new RateLimiterRedis({
   storeClient: redisClient,

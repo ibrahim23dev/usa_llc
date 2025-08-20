@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  # 2) Bitnami PostgreSQL (non-root, prod/K8s-friendly)
+  postgres_bitnami:
+    image: bitnami/postgresql:latest
+    container_name: postgres_bitnami_holidays
+    restart: unless-stopped
+    environment:
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=HolIdAy2025
+      - POSTGRESQL_DATABASE=holidays
+      - POSTGRES_HOST_AUTH_METHOD=md5 # database export any ip
+    # env_file:
+    #   - .env
+    ports:
+      - "5454:5432" # Bitnami on 5433
+    networks:
+      - backend
+    volumes:
+      - pg_bitnami_data:/bitnami/postgresql
+      - ./init/bitnami:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U $$POSTGRESQL_USERNAME -d $$POSTGRESQL_DATABASE -h 127.0.0.1",
+        ]
+      interval: 60s
+      timeout: 5s
+      retries: 5
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  pg_bitnami_data:
+  # redis_cache_data:
+  # redis_queue_data:

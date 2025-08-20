@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { PrismaEnum } from "../../app/share/Prisma/inteface.prisma";
+import { PrismaEnum } from "../../app/adapters/Prisma/interface.prisma";
 export const zodSlugSchema = z.string().transform(val =>
   val
     .trim()

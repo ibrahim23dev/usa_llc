@@ -1,12 +1,7 @@
-import {$Enums} from '@prisma/client';
+//import { } from "@prisma/client";
 import { InputJsonValue } from "@prisma/client/runtime/library";
 
 
-export {
-  
-};
-
-export const PrismaEnum =$Enums
 
 
 

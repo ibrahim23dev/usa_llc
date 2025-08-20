@@ -1,0 +1,5 @@
+{
+  "watch": ["src", "openapi.yaml"],
+  "ext": "ts,yml,yaml",
+  "exec": "ts-node-dev --respawn --transpile-only src/server.ts"
+}
